@@ -1,0 +1,6 @@
+[zh]
+    languageName = "简体中文"
+    title        = "༺KO༒NE༻"
+    weight       = 1
+    [zh.params.sidebar]
+        subtitle = "渴望自己决定，渴望鼓舞他人"

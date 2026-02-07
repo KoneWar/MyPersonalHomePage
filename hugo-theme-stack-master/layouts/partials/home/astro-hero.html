@@ -1,0 +1,163 @@
+{{/* layouts/partials/home/astro-hero.html */}}
+{{ $version := "1.0.0 2026/2/7 10:40" }}
+<section id="hero" class="astro-hero">
+    <div class="hero-content">
+        <h1 class="hero-title">
+            {{ .Site.Title }}
+        </h1>
+        <span style="position: relative; display: inline-block;">
+            <a href="javascript:void(0);" class="rss-icon" aria-label="Version Info" title="Version Info" onclick="toggleVersionInfo()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                    <path d="M4 4a16 16 0 0 1 16 16" />
+                    <path d="M4 11a9 9 0 0 1 9 9" />
+                </svg>
+            </a>
+            <div id="version-info" class="version-info" style="display: none;">
+                <strong>当前版本：</strong><br>{{ $version }}<br>
+                版本修改历史：<br>
+                1.0.0 2026/2/7 10:00<br>
+                0.0.2 2026/2/7 9:30<br>
+                0.0.1 2026/2/7 1:11
+            </div>
+        </span>
+
+        <div class="hero-description">
+            {{ .Site.Params.sidebar.subtitle | markdownify }}
+        </div>
+        
+        <p class="hero-read-more">
+            ꧁你好吗？我的朋友。
+            <a class="hero-link" href="" target="_blank">联系我</a> ꧂
+            <br><br>
+            <strong>当前版本：{{ $version }}</strong> 
+            
+            <br>TODO:
+            <br>1, 无法登录：{"errno":500,"errmsg":"payload is required"}
+            <br>2, 博客有点少。。。
+            <br>3, “联系我”按钮没有跳转
+            <br>......
+        </p>
+
+        {{ if .Site.Menus.social }}
+        <div class="social-wrapper">
+            <div class="social-label">Social Links:</div>
+            <div class="social-links">
+                {{ range .Site.Menus.social }}
+                <a href="{{ .URL }}" target="_blank" class="social-link" title="{{ .Name }}">
+                    {{ partial "helper/icon" (default "link" .Params.Icon) }}
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<style>
+    .astro-hero {
+        padding: 2rem 0 1.5rem 0;
+        border-bottom: 1px solid var(--card-border);
+        margin-bottom: 2rem;
+        color: var(--card-text-color-main);
+    }
+    .hero-title {
+        display: inline-block;
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin: 1rem 0;
+        line-height: 1.2;
+    }
+    .rss-icon {
+        display: inline-block;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        color: var(--primary);
+    }
+    .rss-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .version-info {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 0.5rem;
+        padding: 1rem 1.5rem;
+        background-color: var(--card-background);
+        border: 1px solid var(--card-border);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        z-index: 10;
+        font-size: 1.2rem;
+        color: var(--card-text-color-main);
+        white-space: nowrap;
+    }
+    .hero-description {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--card-text-color-secondary);
+    }
+    .hero-read-more {
+        margin-top: 0.5rem;
+        color: var(--card-text-color-secondary);
+    }
+    .hero-link {
+        text-decoration: underline;
+        text-decoration-style: dashed;
+        text-underline-offset: 4px;
+        color: var(--card-text-color-main);
+    }
+    .hero-link:hover {
+        color: var(--primary);
+    }
+    .social-wrapper {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .social-label {
+        margin-bottom: 0.25rem;
+        font-weight: 600;
+        color: var(--card-text-color-main);
+    }
+    .social-links {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--card-text-color-secondary);
+        transition: color 0.2s;
+    }
+    .social-link:hover {
+        color: var(--primary);
+    }
+    .social-link svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+        .hero-title { font-size: 3rem; }
+        .social-wrapper { flex-direction: row; align-items: center; }
+        .social-label { margin-bottom: 0; margin-right: 0.5rem; }
+    }
+</style>
+
+<script>
+    function toggleVersionInfo() {
+        var versionInfo = document.getElementById("version-info");
+        if (versionInfo.style.display === "none") {
+            versionInfo.style.display = "block";
+        } else {
+            versionInfo.style.display = "none";
+        }
+    }
+</script>

@@ -1,0 +1,35 @@
+<div id="preloader" class="preloader">
+    <div class="preloader-content">
+        Welcome to my World!
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Immediate check to avoid flash of content
+        if (localStorage.getItem('preloaderShown')) {
+            var style = document.createElement('style');
+            style.innerHTML = '#preloader { display: none !important; }';
+            document.head.appendChild(style);
+        }
+    })();
+
+    window.addEventListener('load', function() {
+        var preloader = document.getElementById('preloader');
+        if (!preloader) return;
+
+        if (!localStorage.getItem('preloaderShown')) {
+            // It's the first visit, let it show for a while
+            setTimeout(function() {
+                preloader.classList.add('loaded');
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                    localStorage.setItem('preloaderShown', 'true');
+                }, 800); // Wait for transition to finish
+            }, 1000); // Minimum display time
+        } else {
+            // Should be hidden by the inline script above, but just in case
+            preloader.style.display = 'none';
+        }
+    });
+</script>

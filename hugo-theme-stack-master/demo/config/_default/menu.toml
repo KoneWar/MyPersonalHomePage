@@ -1,0 +1,22 @@
+[[social]]
+    identifier = "qqemail"
+    name       = "qqEmail"
+    url        = "https://konestar@qq.com"
+    [social.params]
+        icon = "brand-qqemail"
+
+[[social]]
+    identifier = "bilibili"
+    name       = "Bilibili"
+    url        = "https://space.bilibili.com/1962970006"
+    [social.params]
+        icon = "brand-bilibili"
+
+
+[[social]]
+    identifier = "gmail"
+    name       = "Gmail"
+    url        = "https://konewarlord@gmail.com"
+    [social.params]
+        icon = "brand-gmail"
+
